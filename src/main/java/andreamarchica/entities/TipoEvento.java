@@ -1,5 +1,5 @@
 package andreamarchica.entities;
 
-public enum tipoEvento {
+public enum TipoEvento {
     PUBBLICO, PRIVATO
 }

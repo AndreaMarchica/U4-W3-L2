@@ -5,6 +5,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "eventi")
 public class Evento {
+
+    /*ATTRIBUTI*/
+
     @Id
     @GeneratedValue
     private Long id;
@@ -20,15 +23,21 @@ public class Evento {
 
     @Column(name = "tipoEvento")
     @Enumerated(EnumType.STRING)
-    private tipoEvento tipoEvento;
+    private TipoEvento tipoEvento;
 
     @Column
     private int numeroMassimoPartecipanti;
 
+    @OneToOne
+    @JoinColumn(name = "LOCATION_id")
+    private Location location;
+
+
+    /*COSTRUTTORI*/
 
     public Evento() {}
 
-    public Evento(String titolo, String dataEvento, String descrizione, andreamarchica.entities.tipoEvento tipoEvento, int numeroMassimoPartecipanti) {
+    public Evento(String titolo, String dataEvento, String descrizione, TipoEvento tipoEvento, int numeroMassimoPartecipanti) {
         this.titolo = titolo;
         this.dataEvento = dataEvento;
         this.descrizione = descrizione;
@@ -36,6 +45,8 @@ public class Evento {
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
 
     }
+
+    /*METODI*/
 
     public Long getId() {
         return id;
@@ -69,11 +80,11 @@ public class Evento {
         this.descrizione = descrizione;
     }
 
-    public andreamarchica.entities.tipoEvento getTipoEvento() {
+    public TipoEvento getTipoEvento() {
         return tipoEvento;
     }
 
-    public void setTipoEvento(andreamarchica.entities.tipoEvento tipoEvento) {
+    public void setTipoEvento(TipoEvento tipoEvento) {
         this.tipoEvento = tipoEvento;
     }
 
@@ -84,7 +95,13 @@ public class Evento {
     public void setNumeroMassimoPartecipanti(int numeroMassimoPartecipanti) {
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
     }
+    public Location getLocation() {
+        return location;
+    }
 
+    public void setLocation(Location location) {
+        this.location = location;
+    }
     @Override
     public String toString() {
         return "Evento{" +
